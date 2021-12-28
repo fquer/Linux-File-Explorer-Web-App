@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+   <head>
+      <title>Rename</title>
+      <style>
+        body {background-color: rgb(223, 212, 188);}
+        .div {
+            text-align: center;
+            margin-top: 250px;
+        }
+      </style>
+   </head>
+
+   <body>
+    <div class=div>
+        <p class="baslik">Rename '{{ name }}' to :</p> 
+        <form action="/rename_active" method="POST"> 
+            <input type="text" name="rename_input"><br><br>
+            <input for = "{{ name }}" name = "{{ name }}" type="submit" value='Rename !'>
+        </form>
+    </div>
+   </body>
+
+</html>

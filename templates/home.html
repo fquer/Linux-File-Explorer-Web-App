@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>File Explorer</title>
+    <style>
+      body {background-color: rgb(223, 212, 188);}
+      .baslik{
+          color: white;
+          font-size: 30px;
+          margin-top: 100px;
+          text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+          margin-left: 230px;
+      }
+    </style>
+  </head>
+
+  <body>
+  
+    <p class = baslik>Current Folder : {{ folder_name }}</p>
+    
+    <table style="width:50%">
+      {%for i in range(0, len)%}
+      <tr>
+        <form action="/cd" method="POST"> 
+          <td>
+            <input style = "margin-left: 250px;" name = "{{ls[i]}}" type="submit" value= "{{ls[i]}}">
+          </td>
+        </form>
+
+        <form action="/remove" method="POST"> 
+          <td>
+            <input style = "margin-left: 250px;" for = "{{ls[i]}}" name = "{{ls[i]}}_rm" type="submit" value=Remove>
+          </td>
+        </form>
+        
+        <form action="/rename" method="POST"> 
+          <td>
+            <input for = "{{ls[i]}}" name = "{{ls[i]}}_rename" type="submit" value=Rename>
+          </td>
+        </form>
+
+        <form action="/copy" method="POST"> 
+          <td>
+            
+            <input for = "{{ls[i]}}" name = "{{ls[i]}}_copy" type="submit" value=Copy>
+          </td>
+        </form>
+        
+      </tr>
+      {%endfor%}
+    </table>
+        
+    <br>
+    <br>
+
+    <table style="width:50%">
+      <tr>
+
+      <form action="/back" method="POST">
+        <td><input style = "margin-left: 550px;" name = back type="submit" value=Back></td>
+      </form>
+
+      <form action="/new_folder" method="POST">
+        <td><input name = new-folder type="submit" value='New Folder'></td>
+      </form>
+
+      <form action="/paste" method="POST">
+        <td><input name = 'paste' type="submit" value='Paste'></td>
+      </form>
+      </tr>
+
+
+    </table>
+
+  </body>
+</html>
