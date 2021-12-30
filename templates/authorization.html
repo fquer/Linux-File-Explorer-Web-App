@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+   <head>
+      <title>Authorization</title>
+      <style>
+        body {background-color: rgb(223, 212, 188);}
+        .div {
+            
+            margin-left: 46%;
+        }
+      </style>
+   </head>
+
+   <body>
+    <p style = "text-align: center; margin-top: 220px;" class="baslik">Edit '{{ name }}' permissions</p><br><br> 
+
+    <div class=div>
+        <form action="/authorization_active" method="POST"> 
+            <b1>Owner Permissions</b1><br><br>
+            <input type="checkbox" id="owner_read" name="owner_read" value="owner_read">
+            <label for="owner_read">Read</label><br>
+            <input type="checkbox" id="owner_write" name="owner_write" value="owner_write">
+            <label for="owner_write">Write</label><br>
+            <input type="checkbox" id="owner_execute" name="owner_execute" value="owner_execute">
+            <label for="owner_execute">Execute</label><br>
+
+            <br><b1>Group Permissions</b1><br><br>
+            <input type="checkbox" id="group_read" name="group_read" value="group_read">
+            <label for="group_read">Read</label><br>
+            <input type="checkbox" id="group_write" name="group_write" value="group_write">
+            <label for="group_write">Write</label><br>
+            <input type="checkbox" id="group_execute" name="group_execute" value="group_execute">
+            <label for="group_execute">Execute</label><br>
+
+            <br><b1>Other Permissions</b1><br><br>
+            <input type="checkbox" id="other_read" name="other_read" value="other_read">
+            <label for="other_read">Read</label><br>
+            <input type="checkbox" id="other_write" name="other_write" value="other_write">
+            <label for="other_write">Write</label><br>
+            <input type="checkbox" id="other_execute" name="other_execute" value="other_execute">
+            <label for="other_execute">Execute</label><br><br><br>
+
+            <input for = "{{ name }}" name = "{{ name }}" type="submit" value='Apply'>
+        </form>
+    </div>
+
+   </body>
+
+</html>

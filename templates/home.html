@@ -7,70 +7,126 @@
       .baslik{
           color: white;
           font-size: 30px;
-          margin-top: 100px;
+          text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+          margin-left: 230px;
+          margin-top: 70px; 
+      }
+      .path{
+          color: white;
+          font-size: 25px;
           text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
           margin-left: 230px;
       }
     </style>
+
+    <script type="text/javascript">
+      var say = 0;
+
+      function ShowHide(chk) {
+          var rename = document.getElementById("rename");
+          var authorization = document.getElementById("authorization");
+          var rm = document.getElementById("rm");
+          var copy = document.getElementById("copy");
+          chk.checked ? say = say + 1 : say = say - 1;
+          console.log(say);
+          if (say == 1) {
+            rename.style.display = "block";
+            authorization.style.display = "block";
+          }
+
+          else{
+            rename.style.display = "none";
+            authorization.style.display = "none";
+            
+          } 
+
+          if (say >= 1){
+            rm.style.display = "block";
+            copy.style.display = "block";
+          }
+
+          else{
+            rm.style.display = "none";
+            copy.style.display = "none";
+          }
+
+      }
+
+    </script>
+    
   </head>
 
   <body>
-  
+
     <p class = baslik>Current Folder : {{ folder_name }}</p>
+    <p class = path >{{ path }}</p>
     
-    <table style="width:50%">
-      {%for i in range(0, len)%}
-      <tr>
-        <form action="/cd" method="POST"> 
-          <td>
-            <input style = "margin-left: 250px;" name = "{{ls[i]}}" type="submit" value= "{{ls[i]}}">
-          </td>
-        </form>
-
-        <form action="/remove" method="POST"> 
-          <td>
-            <input style = "margin-left: 250px;" for = "{{ls[i]}}" name = "{{ls[i]}}_rm" type="submit" value=Remove>
-          </td>
-        </form>
-        
-        <form action="/rename" method="POST"> 
-          <td>
-            <input for = "{{ls[i]}}" name = "{{ls[i]}}_rename" type="submit" value=Rename>
-          </td>
-        </form>
-
-        <form action="/copy" method="POST"> 
-          <td>
-            
-            <input for = "{{ls[i]}}" name = "{{ls[i]}}_copy" type="submit" value=Copy>
-          </td>
-        </form>
-        
-      </tr>
-      {%endfor%}
+    
+    <table style="width:10%; margin-left: 15%;">
+      <form action="/action" method="POST"> 
+        {%for i in range(0, len)%}
+          <tr>
+            <td> 
+              <input type="checkbox" id="{{ls[i]}}" name = "{{ls[i]}}" value="{{ls[i]}}" onclick="ShowHide(this)" >
+            </td>
+          
+            <td>
+              <input name = "{{ls[i]}}" type="submit" value= "{{ls[i]}}" style="margin-left: 80px;">
+            </td>
+          </tr>
+        {%endfor%}
     </table>
         
     <br>
     <br>
 
-    <table style="width:50%">
+    <table>
       <tr>
+        <td>
+          <input for = "{{ls[i]}}" name = "rm" type="submit" value=Remove id = rm style="margin-left: 350px;display: none;">
+        </td>
+      
+        <td>
+          <input for = "{{ls[i]}}" name = "copy" type="submit" value=Copy id = copy style="display: none">
+        </td>
+      
+        <td>
+          <input for = "{{ls[i]}}" name = "rename" type="submit" value=Rename id = 'rename' style="display: none">
+        </td>
+  
+        <td>
+          <input for = "{{ls[i]}}" name = "authorization" type="submit" value=Authorization id = 'authorization' style="display: none">
+        </td>
+      </tr>
+      </form> 
 
-      <form action="/back" method="POST">
-        <td><input style = "margin-left: 550px;" name = back type="submit" value=Back></td>
-      </form>
+
+    </table>
+
+    <br>
+    <br>
+
+    <table>
 
       <form action="/new_folder" method="POST">
-        <td><input name = new-folder type="submit" value='New Folder'></td>
+        <td>
+          <input style = "margin-left: 500px;" name = new-folder type="submit" value='New Folder'>
+        </td>
       </form>
 
       <form action="/paste" method="POST">
-        <td><input name = 'paste' type="submit" value='Paste'></td>
+        <td>
+          <input name = 'paste' type="submit" value='Paste'>
+        </td>
       </form>
-      </tr>
-
 
     </table>
+    
+    <form action="/back" method="POST">
+      <td>
+        <input style = "margin-left: 250px;" name = back type="submit" value=Back>
+      </td>
+    </form>
 
   </body>
 </html>
